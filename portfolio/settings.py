@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_extensions',
-    'portfolio_app'
+    'portfolio_app',
+    'phone_field'
 ]
 
 MIDDLEWARE = [
