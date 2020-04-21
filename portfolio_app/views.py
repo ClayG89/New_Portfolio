@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-
-from .serializers import BlogSerializer, CommentSerializer, ContactSerializer
+from django.shortcuts import render
+from .serializer import BlogSerializer, CommentSerializer, ContactSerializer
 from .models import Blog, Comment, Contact
 
 

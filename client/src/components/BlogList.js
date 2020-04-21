@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 export default class BlogList extends Component {
     state = {
         error: '',
@@ -13,7 +16,7 @@ export default class BlogList extends Component {
 
     fetchBlogs = async () => {
         try {
-            const res = await axios.get('/api/v1/blogs');
+            const res = await axios.get('/api/v1/blogs/');
             this.setState({blogs: res.data});
         }
         catch (err) {
