@@ -33,9 +33,10 @@ export default class BlogList extends Component {
                 <h1>All Blogs</h1>
                 {this.state.blogs.map(blog => (
                     <div key={blog.id}>
-                        <Link to={`/blog/${blog.id}`} >{blog.name}</Link>
+                        <Link to={`/blog/${blog.id}`} >{blog.title}</Link>
                     </div>
                 ))}
+                
             </div>
         );
     }

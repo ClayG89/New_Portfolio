@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import Comment from './Comment'
+import CommentList from './CommentList';
+
 
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 export default class Blog extends Component {
     state = {
-        blog: {},
+        blog: [],
         comments: [],
 }
 
 componentDidMount() {
     const blogId = this.props.match.params.id;
     this.fetchBlog(blogId)
+   
 }
 
 fetchBlog = async (blogId) => {
     try {
-        const blogResponse = await axios.get(`/api/v1/blogs/${blogId}`)
+        const blogResponse = await axios.get(`/api/v1/blogs/${blogId}/`)
         this.setState({
             blog: blogResponse.data,
             comments: blogResponse.data.comments,
@@ -28,15 +32,19 @@ fetchBlog = async (blogId) => {
         this.setState({error: error.message})
     }
 }
+
 render() {
     return (
-        <div>
-            <h1>{this.state.blog.title}</h1>
-            {this.state.comments.map(comment => (
-                <div key={comment.id}>
-                    <h4>{Blog.title}</h4>
-                </div>
-            ))}
+        <div> 
+            <div>          
+                <h2>{this.state.blog.title}</h2>
+                <p>{this.state.blog.blog}</p>
+            </div> 
+            <div>
+                <h2>Comments</h2>
+                <CommentList />
+                {/* <Comment /> */}
+            </div> 
         </div>
     );
 }

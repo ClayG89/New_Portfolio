@@ -13,11 +13,11 @@ export default class ContactList extends Component {
         newContactList: {}
 
     }
-    getContactList= () => {
+    getContactList = () => {
         axios.get('/api/v1/contacts/').then((response) => {
             const foundContactList = response.data;
             this.setState({
-        contactlist: foundContactList
+                contactlist: foundContactList
             })
         })
     }
@@ -28,7 +28,7 @@ export default class ContactList extends Component {
         });
     }
     updateContactList = (event) => {
-        const updatedNewContactList = { ...this.state.newContactList};
+        const updatedNewContactList = { ...this.state.newContactList };
         updatedNewContactList[event.target.name] = event.target.value;
         this.setState({
             newContactList: updatedNewContactList,
@@ -47,57 +47,57 @@ export default class ContactList extends Component {
     render() {
         return (
             <div>
-                
-              <h2>Contact Me</h2>
+
+                <h2>Contact Me</h2>
 
                 <div>
-                   
-                   {
-                       this.state.contactlist.map((contact, i) => {
-                           return (
-   
-                               <div>
-                                   <Link to={`/contact/${contact.id}`}>{contact.company}</Link>
-                               </div>
-                         
-                           )
-                       })
-                   }
-                   </div>
-                   <h1>Hello World</h1>
 
-                <div>
-                    <h4>First Name</h4>
-                    <input type="text" name="firstname" onChange={ this.updateContactList }/>
-                </div>
-                <div>
-                <h4>Last Name</h4>
-                    <input type="text" name="lastname" onChange={ this.updateContactList }/>
-                </div>
-                <div>
-                    <h4>Company</h4>
-                    <input type="number" name="company" onChange={ this.updateContactList }/>
-                </div>
-                <div>
-                    <h4>Phone</h4>
-                    <input type="number" name="phonenum" onChange={ this.updateContactList }/>                    
-                </div>
-                <div>
-                    <h4>email</h4>
-                    <input type="tel" name="email" onChange={ this.updateContactList }/>                  
-                </div>
-                <div>
-                    <h4>Message Subject</h4>
-                    <input type="number" name="subject" onChange={ this.updateContactList }/>                  
-                </div>
-                <div>
-                    <h4>Message</h4>
-                    <input type="number" name="message" onChange={ this.updateContactList }/>                  
-                </div>
-                
+                    {
+                        this.state.contactlist.map((contact, i) => {
+                            return (
 
-                <button onClick={ this.submitCreateContact }>Submit</button>
+                                <div>
+                                    <Link to={`/contact/${contact.id}`}>{contact.company}</Link>
+                                </div>
 
+                            )
+                        })
+                    }
+                </div>
+                <h1>Hello World</h1>
+                <form onSubmit={this.updateContactList}>
+                    <div>
+                        <h4>First Name</h4>
+                        <input type="text" name="firstname" />
+                    </div>
+                    <div>
+                        <h4>Last Name</h4>
+                        <input type="text" name="lastname" />
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <input type="text" name="company" />
+                    </div>
+                    <div>
+                        <h4>Phone</h4>
+                        <input type="tel" name="phonenum" />
+                    </div>
+                    <div>
+                        <h4>email</h4>
+                        <input type="email" name="email" />
+                    </div>
+                    <div>
+                        <h4>Message Subject</h4>
+                        <input type="text" name="subject" />
+                    </div>
+                    <div>
+                        <h4>Message</h4>
+                        <textarea className="textarea" name="message" placeholder="Add a comment"></textarea>
+                    </div>
+
+
+                    <button onClick={this.submitCreateContact}>Submit</button>
+                </form>
             </div>
         )
     }
